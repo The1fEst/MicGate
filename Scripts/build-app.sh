@@ -18,6 +18,7 @@ xcrun swiftc \
   -framework AppKit \
   -framework ApplicationServices \
   -framework Carbon \
+  -framework CoreAudio \
   -framework UserNotifications \
   "$ROOT_DIR"/Source/Application/*.swift \
   "$ROOT_DIR"/Source/Features/*.swift \

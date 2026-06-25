@@ -21,6 +21,7 @@
 		A1000000000000000000000A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* Carbon.framework */; };
 		A1000000000000000000000B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* ApplicationServices.framework */; };
 		A1000000000000000000000C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000E /* UserNotifications.framework */; };
+		A10000000000000000000010 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A2000000000000000000000C /* MicGate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicGate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2000000000000000000000D /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		A2000000000000000000000E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		A20000000000000000000012 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 				A10000000000000000000009 /* AppKit.framework in Frameworks */,
 				A1000000000000000000000A /* Carbon.framework in Frameworks */,
 				A1000000000000000000000B /* ApplicationServices.framework in Frameworks */,
+				A10000000000000000000010 /* CoreAudio.framework in Frameworks */,
 				A1000000000000000000000C /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +84,7 @@
 				A2000000000000000000000A /* AppKit.framework */,
 				A2000000000000000000000B /* Carbon.framework */,
 				A2000000000000000000000D /* ApplicationServices.framework */,
+				A20000000000000000000012 /* CoreAudio.framework */,
 				A2000000000000000000000E /* UserNotifications.framework */,
 			);
 			name = Frameworks;
