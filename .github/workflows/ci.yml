@@ -38,6 +38,7 @@ jobs:
           echo "MICGATE_VERSION=$VERSION" >> "$GITHUB_ENV"
           git add Info.plist
           git commit -m "Bump version to $VERSION [skip ci]"
+          echo "MICGATE_RELEASE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           git push origin HEAD:master
 
       - name: Read version
@@ -45,6 +46,7 @@ jobs:
         run: |
           VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Info.plist)
           echo "MICGATE_VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "MICGATE_RELEASE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Build app
         run: Scripts/build-app.sh
@@ -69,3 +71,14 @@ jobs:
           name: MicGate-${{ env.MICGATE_VERSION }}
           path: Build/Release/MicGate-${{ env.MICGATE_VERSION }}.dmg
           if-no-files-found: error
+
+      - name: Create release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.MICGATE_VERSION }}
+          name: MicGate ${{ env.MICGATE_VERSION }}
+          target_commitish: ${{ env.MICGATE_RELEASE_SHA }}
+          make_latest: true
+          generate_release_notes: true
+          files: Build/Release/MicGate-${{ env.MICGATE_VERSION }}.dmg
