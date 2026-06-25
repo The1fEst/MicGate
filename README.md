@@ -8,6 +8,7 @@ and lets you record a custom hotkey by pressing the shortcut directly.
 ## Features
 
 - Toggle microphone input volume between muted and unmuted.
+- Uses CoreAudio for microphone control.
 - Default hotkey: `Option + /`.
 - Menu bar icon reflects the current microphone state.
 - Left click toggles the microphone.
@@ -46,6 +47,9 @@ Build/Release/MicGate.app
 ```
 
 The build script compiles with `swiftc`, copies resources, writes `Info.plist`, and ad-hoc signs the app.
+
+GitHub Actions builds a DMG for every push to `master`, publishes it in GitHub Releases, and bumps the minor
+version for the published build.
 
 ## Xcode
 
