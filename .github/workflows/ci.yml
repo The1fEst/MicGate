@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: micgate-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build app
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure git
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump minor version
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          VERSION=$(sh Scripts/bump-minor-version.sh Info.plist)
+          echo "MICGATE_VERSION=$VERSION" >> "$GITHUB_ENV"
+          git add Info.plist
+          git commit -m "Bump version to $VERSION [skip ci]"
+          git push origin HEAD:master
+
+      - name: Read version
+        if: github.event_name != 'push' || github.ref != 'refs/heads/master'
+        run: |
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Info.plist)
+          echo "MICGATE_VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Build app
+        run: Scripts/build-app.sh
+
+      - name: Package dmg
+        run: |
+          DMG_ROOT="$RUNNER_TEMP/MicGate-dmg"
+          rm -rf "$DMG_ROOT"
+          mkdir -p "$DMG_ROOT"
+          cp -R "Build/Release/MicGate.app" "$DMG_ROOT/"
+          ln -s /Applications "$DMG_ROOT/Applications"
+          hdiutil create \
+            -volname "MicGate" \
+            -srcfolder "$DMG_ROOT" \
+            -ov \
+            -format UDZO \
+            "Build/Release/MicGate-$MICGATE_VERSION.dmg"
+
+      - name: Upload dmg
+        uses: actions/upload-artifact@v4
+        with:
+          name: MicGate-${{ env.MICGATE_VERSION }}
+          path: Build/Release/MicGate-${{ env.MICGATE_VERSION }}.dmg
+          if-no-files-found: error
