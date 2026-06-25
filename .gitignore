@@ -1,0 +1,6 @@
+/target
+/Build
+.DS_Store
+.idea/
+*.xcuserstate
+xcuserdata/

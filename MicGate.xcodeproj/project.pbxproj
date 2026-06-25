@@ -1,0 +1,341 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* main.swift */; };
+		A10000000000000000000002 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* AppController.swift */; };
+		A10000000000000000000003 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* HotKey.swift */; };
+		A1000000000000000000000D /* HotKeyRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000F /* HotKeyRecorder.swift */; };
+		A1000000000000000000000E /* HotKeyRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* HotKeyRegistration.swift */; };
+		A1000000000000000000000F /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* AccessibilityPermission.swift */; };
+		A10000000000000000000005 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* MenuBar.swift */; };
+		A10000000000000000000006 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* Microphone.swift */; };
+		A10000000000000000000007 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* Notifier.swift */; };
+		A10000000000000000000008 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* AppIcon.icns */; };
+		A10000000000000000000009 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* AppKit.framework */; };
+		A1000000000000000000000A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* Carbon.framework */; };
+		A1000000000000000000000B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* ApplicationServices.framework */; };
+		A1000000000000000000000C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000E /* UserNotifications.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000000000000000000001 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
+		A2000000000000000000000F /* HotKeyRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyRecorder.swift; sourceTree = "<group>"; };
+		A20000000000000000000010 /* HotKeyRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyRegistration.swift; sourceTree = "<group>"; };
+		A20000000000000000000011 /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		A20000000000000000000006 /* Microphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
+		A20000000000000000000007 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000000000000000000009 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		A2000000000000000000000A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A2000000000000000000000B /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		A2000000000000000000000C /* MicGate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicGate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2000000000000000000000D /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		A2000000000000000000000E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A30000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000009 /* AppKit.framework in Frameworks */,
+				A1000000000000000000000A /* Carbon.framework in Frameworks */,
+				A1000000000000000000000B /* ApplicationServices.framework in Frameworks */,
+				A1000000000000000000000C /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A40000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A40000000000000000000003 /* MicGate */,
+				A40000000000000000000004 /* Frameworks */,
+				A40000000000000000000005 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000000000000000000003 /* MicGate */ = {
+			isa = PBXGroup;
+			children = (
+				A4000000000000000000000F /* Source */,
+				A20000000000000000000008 /* Info.plist */,
+				A40000000000000000000007 /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000000000000000000004 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2000000000000000000000A /* AppKit.framework */,
+				A2000000000000000000000B /* Carbon.framework */,
+				A2000000000000000000000D /* ApplicationServices.framework */,
+				A2000000000000000000000E /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2000000000000000000000C /* MicGate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000006 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000001 /* main.swift */,
+				A20000000000000000000002 /* AppController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000007 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000009 /* AppIcon.icns */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000008 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A40000000000000000000009 /* HotKey */,
+				A20000000000000000000005 /* MenuBar.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000009 /* HotKey */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000003 /* HotKey.swift */,
+				A2000000000000000000000F /* HotKeyRecorder.swift */,
+				A20000000000000000000010 /* HotKeyRegistration.swift */,
+			);
+			path = HotKey;
+			sourceTree = "<group>";
+		};
+		A4000000000000000000000B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000006 /* Microphone.swift */,
+				A20000000000000000000007 /* Notifier.swift */,
+				A20000000000000000000011 /* AccessibilityPermission.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A4000000000000000000000E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		A4000000000000000000000F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A40000000000000000000006 /* Application */,
+				A40000000000000000000008 /* Features */,
+				A4000000000000000000000B /* Services */,
+				A4000000000000000000000E /* Support */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A50000000000000000000001 /* MicGate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A60000000000000000000002 /* Build configuration list for PBXNativeTarget "MicGate" */;
+			buildPhases = (
+				A70000000000000000000001 /* Sources */,
+				A30000000000000000000001 /* Frameworks */,
+				A70000000000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MicGate;
+			productName = MicGate;
+			productReference = A2000000000000000000000C /* MicGate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A80000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A50000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A60000000000000000000001 /* Build configuration list for PBXProject "MicGate" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A40000000000000000000001;
+			productRefGroup = A40000000000000000000005 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A50000000000000000000001 /* MicGate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A70000000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000008 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A70000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* main.swift in Sources */,
+				A10000000000000000000002 /* AppController.swift in Sources */,
+				A10000000000000000000003 /* HotKey.swift in Sources */,
+				A1000000000000000000000D /* HotKeyRecorder.swift in Sources */,
+				A1000000000000000000000E /* HotKeyRegistration.swift in Sources */,
+				A10000000000000000000005 /* MenuBar.swift in Sources */,
+				A10000000000000000000006 /* Microphone.swift in Sources */,
+				A10000000000000000000007 /* Notifier.swift in Sources */,
+				A1000000000000000000000F /* AccessibilityPermission.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A90000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A90000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A90000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.MicGate;
+				PRODUCT_NAME = MicGate;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A90000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.MicGate;
+				PRODUCT_NAME = MicGate;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A60000000000000000000001 /* Build configuration list for PBXProject "MicGate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000000000000000000001 /* Debug */,
+				A90000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A60000000000000000000002 /* Build configuration list for PBXNativeTarget "MicGate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000000000000000000003 /* Debug */,
+				A90000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A80000000000000000000001 /* Project object */;
+}
