@@ -1,4 +1,5 @@
 import AppKit
+import ApplicationServices
 import Carbon
 
 enum HotKeyPromptResult {
@@ -20,26 +21,29 @@ enum HotKeyPrompt {
     alert.accessoryView = recorderView
     alert.buttons.first?.isEnabled = false
 
-    let monitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { event in
+    let recorder = HotKeyRecorder { event in
       switch recorderView.record(event: event) {
       case .recorded:
         alert.buttons.first?.isEnabled = true
-        return nil
 
       case .ignored:
-        return event
+        break
 
       case .cancel:
         alert.window.orderOut(nil)
         NSApp.stopModal(withCode: .alertSecondButtonReturn)
-        return nil
       }
     }
 
-    let response = alert.runModal()
-    if let monitor {
-      NSEvent.removeMonitor(monitor)
+    do {
+      try recorder.start()
+    } catch {
+      return .failure(error.localizedDescription)
     }
+
+    NSApp.activate(ignoringOtherApps: true)
+    let response = alert.runModal()
+    recorder.stop()
 
     if response != .alertFirstButtonReturn {
       return .cancelled
@@ -58,6 +62,115 @@ enum HotKeyPrompt {
     alert.informativeText = message
     alert.alertStyle = .warning
     alert.runModal()
+  }
+}
+
+private final class HotKeyRecorder {
+  private let onEvent: (NSEvent) -> Void
+  private var eventTap: CFMachPort?
+  private var runLoopSource: CFRunLoopSource?
+
+  init(onEvent: @escaping (NSEvent) -> Void) {
+    self.onEvent = onEvent
+  }
+
+  deinit {
+    stop()
+  }
+
+  func start() throws {
+    let eventMask = [CGEventType.keyDown, .keyUp, .flagsChanged]
+      .reduce(CGEventMask()) { mask, type in
+        mask | CGEventMask(1 << type.rawValue)
+      }
+
+    guard
+      let eventTap = CGEvent.tapCreate(
+        tap: .cgSessionEventTap,
+        place: .headInsertEventTap,
+        options: .defaultTap,
+        eventsOfInterest: eventMask,
+        callback: hotKeyRecorderCallback,
+        userInfo: Unmanaged.passUnretained(self).toOpaque(),
+      )
+    else {
+      throw HotKeyRecorderError.tapCreateFailed
+    }
+
+    guard let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0) else {
+      CFMachPortInvalidate(eventTap)
+      throw HotKeyRecorderError.runLoopSourceCreateFailed
+    }
+
+    self.eventTap = eventTap
+    self.runLoopSource = runLoopSource
+    CFRunLoopAddSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
+    CGEvent.tapEnable(tap: eventTap, enable: true)
+  }
+
+  func stop() {
+    if let runLoopSource {
+      CFRunLoopRemoveSource(CFRunLoopGetMain(), runLoopSource, .commonModes)
+      self.runLoopSource = nil
+    }
+
+    if let eventTap {
+      CGEvent.tapEnable(tap: eventTap, enable: false)
+      CFMachPortInvalidate(eventTap)
+      self.eventTap = nil
+    }
+  }
+
+  fileprivate func handle(type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
+    switch type {
+    case .keyDown,
+         .flagsChanged:
+      if let event = NSEvent(cgEvent: event) {
+        onEvent(event)
+      }
+      return nil
+
+    case .keyUp:
+      return nil
+
+    case .tapDisabledByTimeout,
+         .tapDisabledByUserInput:
+      if let eventTap {
+        CGEvent.tapEnable(tap: eventTap, enable: true)
+      }
+      return Unmanaged.passUnretained(event)
+
+    default:
+      return Unmanaged.passUnretained(event)
+    }
+  }
+}
+
+private func hotKeyRecorderCallback(
+  _: CGEventTapProxy,
+  type: CGEventType,
+  event: CGEvent,
+  refcon: UnsafeMutableRawPointer?,
+) -> Unmanaged<CGEvent>? {
+  guard let refcon else {
+    return Unmanaged.passUnretained(event)
+  }
+
+  let recorder = Unmanaged<HotKeyRecorder>.fromOpaque(refcon).takeUnretainedValue()
+  return recorder.handle(type: type, event: event)
+}
+
+private enum HotKeyRecorderError: LocalizedError {
+  case tapCreateFailed
+  case runLoopSourceCreateFailed
+
+  var errorDescription: String? {
+    switch self {
+    case .tapCreateFailed:
+      "Unable to start hotkey recording. Check Accessibility permission."
+    case .runLoopSourceCreateFailed:
+      "Unable to attach hotkey recording to the main run loop."
+    }
   }
 }
 
@@ -147,8 +260,8 @@ private final class HotKeyRecorderView: NSView {
 
   private func updatePreview(modifiers: UInt32, key: String?) {
     guard modifiers != 0 else {
-      valueLabel.stringValue = "Waiting for shortcut"
-      valueLabel.textColor = .secondaryLabelColor
+      valueLabel.stringValue = hotKey?.label ?? ""
+      valueLabel.textColor = .labelColor
       return
     }
 

@@ -54,13 +54,19 @@ final class AppController: NSObject, NSApplicationDelegate, UNUserNotificationCe
   }
 
   @objc func setHotKey(_: Any?) {
+    hotKeyRegistration?.unregister()
+    hotKeyRegistration = nil
+
     switch HotKeyPrompt.prompt(current: hotKey) {
     case .success(let next):
-      changeHotKey(next)
+      installRecordedHotKey(next)
+
     case .failure(let message):
+      installHotKey(hotKey)
       HotKeyPrompt.showInvalid(message)
+
     case .cancelled:
-      break
+      installHotKey(hotKey)
     }
   }
 
@@ -129,6 +135,18 @@ final class AppController: NSObject, NSApplicationDelegate, UNUserNotificationCe
     } catch {
       hotKey = previousHotKey
       hotKeyRegistration = previousRegistration
+      HotKeyPrompt.showInvalid("Unable to register \(nextHotKey.label).")
+    }
+  }
+
+  private func installRecordedHotKey(_ nextHotKey: HotKey) {
+    do {
+      hotKeyRegistration = try HotKeyRegistration.register(nextHotKey)
+      hotKey = nextHotKey
+      refreshHotKeyMenu()
+      updateStatusItem()
+    } catch {
+      installHotKey(hotKey)
       HotKeyPrompt.showInvalid("Unable to register \(nextHotKey.label).")
     }
   }
