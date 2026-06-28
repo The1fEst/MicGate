@@ -4,6 +4,11 @@ final class MenuBar {
   private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
   private let menu = NSMenu()
   private let currentHotKeyItem = NSMenuItem(title: "Current: Option + /", action: nil, keyEquivalent: "")
+  private let launchAtLoginItem = NSMenuItem(
+    title: "Launch at Login",
+    action: #selector(AppController.toggleLaunchAtLogin(_:)),
+    keyEquivalent: "",
+  )
 
   var isRightClick: Bool {
     guard let event = NSApp.currentEvent else {
@@ -42,6 +47,11 @@ final class MenuBar {
 
     menu.addItem(.separator())
 
+    launchAtLoginItem.target = delegate
+    menu.addItem(launchAtLoginItem)
+
+    menu.addItem(.separator())
+
     let quitItem = NSMenuItem(
       title: "Quit",
       action: #selector(AppController.quit(_:)),
@@ -73,6 +83,10 @@ final class MenuBar {
 
   func updateHotKey(_ hotKey: HotKey) {
     currentHotKeyItem.title = "Current: \(hotKey.label)"
+  }
+
+  func updateLaunchAtLogin(_ enabled: Bool) {
+    launchAtLoginItem.state = enabled ? .on : .off
   }
 
   func popup(hotKey: HotKey) {

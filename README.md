@@ -15,6 +15,7 @@ and lets you record a custom hotkey by pressing the shortcut directly.
 - Right click opens the menu.
 - Record a custom hotkey interactively.
 - Reset the hotkey to default.
+- Optionally launch MicGate automatically at login.
 - Uses a HID-level `CGEventTap` so hotkeys can still work when apps like Moonlight capture normal hotkeys.
 
 ## Permissions

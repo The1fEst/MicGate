@@ -12,7 +12,15 @@ enum AccessibilityPermission {
     }
 
     while !isGranted {
-      let response = permissionAlert().runModal()
+      let (alert, launchAtLoginCheckbox) = permissionAlert()
+      let response = alert.runModal()
+
+      do {
+        try LaunchAtLogin.setEnabled(launchAtLoginCheckbox.state == .on)
+      } catch {
+        NSLog("Unable to update launch at login: \(error)")
+      }
+
       switch response {
       case .alertFirstButtonReturn:
         openSettings()
@@ -26,7 +34,7 @@ enum AccessibilityPermission {
     return true
   }
 
-  private static func permissionAlert() -> NSAlert {
+  private static func permissionAlert() -> (NSAlert, NSButton) {
     let alert = NSAlert()
     alert.messageText = "Accessibility Permission Required"
     alert.informativeText = "MicGate needs Accessibility access to receive the microphone hotkey even when another app captures the keyboard."
@@ -34,7 +42,16 @@ enum AccessibilityPermission {
     alert.addButton(withTitle: "Open Settings")
     alert.addButton(withTitle: "Check Again")
     alert.addButton(withTitle: "Quit")
-    return alert
+
+    let launchAtLoginCheckbox = NSButton(
+      checkboxWithTitle: "Launch at Login",
+      target: nil,
+      action: nil,
+    )
+    launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
+    alert.accessoryView = launchAtLoginCheckbox
+
+    return (alert, launchAtLoginCheckbox)
   }
 
   private static func openSettings() {

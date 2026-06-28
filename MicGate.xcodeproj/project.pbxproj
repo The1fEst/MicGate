@@ -22,6 +22,8 @@
 		A1000000000000000000000B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* ApplicationServices.framework */; };
 		A1000000000000000000000C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000E /* UserNotifications.framework */; };
 		A10000000000000000000010 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* CoreAudio.framework */; };
+		A10000000000000000000011 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000013 /* LaunchAtLogin.swift */; };
+		A10000000000000000000012 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		A2000000000000000000000D /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		A2000000000000000000000E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		A20000000000000000000012 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		A20000000000000000000013 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		A20000000000000000000014 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 				A1000000000000000000000A /* Carbon.framework in Frameworks */,
 				A1000000000000000000000B /* ApplicationServices.framework in Frameworks */,
 				A10000000000000000000010 /* CoreAudio.framework in Frameworks */,
+				A10000000000000000000012 /* ServiceManagement.framework in Frameworks */,
 				A1000000000000000000000C /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +90,7 @@
 				A2000000000000000000000B /* Carbon.framework */,
 				A2000000000000000000000D /* ApplicationServices.framework */,
 				A20000000000000000000012 /* CoreAudio.framework */,
+				A20000000000000000000014 /* ServiceManagement.framework */,
 				A2000000000000000000000E /* UserNotifications.framework */,
 			);
 			name = Frameworks;
@@ -140,6 +146,7 @@
 				A20000000000000000000006 /* Microphone.swift */,
 				A20000000000000000000007 /* Notifier.swift */,
 				A20000000000000000000011 /* AccessibilityPermission.swift */,
+				A20000000000000000000013 /* LaunchAtLogin.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -240,6 +247,7 @@
 				A10000000000000000000006 /* Microphone.swift in Sources */,
 				A10000000000000000000007 /* Notifier.swift in Sources */,
 				A1000000000000000000000F /* AccessibilityPermission.swift in Sources */,
+				A10000000000000000000011 /* LaunchAtLogin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

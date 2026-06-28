@@ -74,6 +74,15 @@ final class AppController: NSObject, NSApplicationDelegate, UNUserNotificationCe
     changeHotKey(.default)
   }
 
+  @objc func toggleLaunchAtLogin(_: Any?) {
+    do {
+      try LaunchAtLogin.setEnabled(!LaunchAtLogin.isEnabled)
+      menuBar.updateLaunchAtLogin(LaunchAtLogin.isEnabled)
+    } catch {
+      showLaunchAtLoginError(error)
+    }
+  }
+
   @objc func quit(_: Any?) {
     NSApp.terminate(nil)
   }
@@ -106,7 +115,16 @@ final class AppController: NSObject, NSApplicationDelegate, UNUserNotificationCe
 
   private func showMenu() {
     refreshHotKeyMenu()
+    menuBar.updateLaunchAtLogin(LaunchAtLogin.isEnabled)
     menuBar.popup(hotKey: hotKey)
+  }
+
+  private func showLaunchAtLoginError(_ error: Error) {
+    let alert = NSAlert()
+    alert.messageText = "Unable to Update Launch at Login"
+    alert.informativeText = error.localizedDescription
+    alert.alertStyle = .warning
+    alert.runModal()
   }
 
   private func updateStatusItem() {
